@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mike.SSMActiviti.role.dao.RoleMapper">
+    
+    <resultMap id="baseResultMap" type="com.mike.SSMActiviti.role.entity.Role">
+        <id property="id" column="id"/>
+        <result property="roleName" column="roleName"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+	    
+	<select id="selectRoleById" parameterType="Integer" resultMap="baseResultMap">
+		select * from role where id=#{value}
+	</select>
+</mapper>

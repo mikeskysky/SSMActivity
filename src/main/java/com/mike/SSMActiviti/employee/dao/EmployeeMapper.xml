@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mike.SSMActiviti.employee.dao.EmployeeMapper">
+    
+    <resultMap id="baseResultMap" type="com.mike.SSMActiviti.employee.entity.Employee">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="password" column="password"/>
+        <result property="email" column="email"/>
+        <association property="role" column="role_id" select="com.mike.SSMActiviti.role.dao.RoleMapper.selectRoleById" />
+        <association property="manager" column="manager_id" select="selectUserById"/>
+    </resultMap>
+    <select id="selectUserById" resultMap="baseResultMap" parameterType="Integer">
+    	select * from employee where id=#{value}
+    </select>
+    <select id="login" resultMap="baseResultMap">
+		select * from  employee where name=#{name} and password=#{password}   
+    </select>
+</mapper>
